@@ -3,7 +3,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
 import { Hero } from './hero';
 import { MessageService } from './message.service';
 
@@ -42,6 +41,17 @@ export class HeroService {
     return this.http.get<Hero>(url).pipe(
       tap(_ => this.log(`fetched heroes id=${id}`)),          
       catchError(this.handleError<Hero>(`getHero id=${id}`))
+    );
+  }
+
+  updateHero (hero: Hero): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
+      tap(_ => this.log(`updated hero id=${hero.id}`)),
+      catchError(this.handleError<any>('updateHero'))
     );
   }
 }
