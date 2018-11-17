@@ -2,8 +2,11 @@
   <h1>
     {{ title }}
   </h1>
+  <nav>
+    <a routerLink="/heroes">Heroes</a>
+  </nav>
 </div>
 <div>
-  <app-heroes></app-heroes>
+  <router-outlet></router-outlet>
   <app-messages></app-messages>
 </div>
