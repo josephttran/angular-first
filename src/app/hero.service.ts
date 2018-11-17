@@ -40,7 +40,7 @@ export class HeroService {
     const url = `${this.heroesUrl}/${id}`;
 
     return this.http.get<Hero>(url).pipe(
-      tap(_ => this.log('fetched heroes id=${id}')),          
+      tap(_ => this.log(`fetched heroes id=${id}`)),          
       catchError(this.handleError<Hero>(`getHero id=${id}`))
     );
   }
